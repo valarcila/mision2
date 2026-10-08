@@ -5,7 +5,6 @@ const API_KEY = import.meta.env.VITE_NASA_API_KEY || "DEMO_KEY"
 
 // funcion asincrona, obtener asteroides entre dos fechas
 export async function obtenerAsteroides(inicio, fin) {
-    
     // URLSearchParams, construir parametros
     const parametros = new URLSearchParams({
         start_date: inicio,

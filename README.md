@@ -5,3 +5,7 @@
 ## Uso de IA
 
 ## Autopsia
+
+fecha hoy
+
+usar flat no flatMap
