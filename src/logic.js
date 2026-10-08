@@ -4,7 +4,7 @@ const umbral = 70000
 export function aplanarAsteroides(asteroides) {
     // Object.values(), obtener arrays fecha
     // flat, unir arrays en uno solo
-    return Object.values(asteroides.near_earth_objects ?? {}).flat()
+    return Object.values(asteroides?.near_earth_objects ?? {}).flat()
 }
 
 // crear array de objetos con propiedades tipo clave valor
