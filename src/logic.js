@@ -1,3 +1,4 @@
+// velocidad minima para considerar rápido un asteroide, km/h 
 const umbral = 70000
 
 // aplanar arrays por fecha
@@ -10,11 +11,11 @@ export function aplanarAsteroides(asteroides) {
 // crear array de objetos con propiedades tipo clave valor
 export function transformarAsteroides(asteroides) {
     return asteroides.map(asteroide => ({
-        // distancia a tierra km
+        // distancia a tierra, km
         distancia: Number(asteroide.close_approach_data?.[0]?.miss_distance?.kilometers ?? NaN),
-        // velocidad km/h
+        // velocidad, km/h
         velocidad: Number(asteroide.close_approach_data?.[0]?.relative_velocity?.kilometers_per_hour ?? NaN),
-        // diametro maximo km
+        // diametro maximo, km
         diametro: asteroide.estimated_diameter?.kilometers?.estimated_diameter_max ?? null,
         id: asteroide.id,
         peligroso: asteroide.is_potentially_hazardous_asteroid,
@@ -33,7 +34,7 @@ export function calcularDistanciaMinima(asteroides) {
     return validos.reduce((minimo, asteroide) => Math.min(minimo, asteroide.distancia), Infinity)
 }
 
-
+// filtrar asteroides peligrosos
 export function filtrarPeligrosos(asteroides) {
     return asteroides.filter(asteroide => asteroide.peligroso)
 }

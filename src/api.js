@@ -15,7 +15,7 @@ export async function obtenerAsteroides(inicio, fin) {
     // realizar peticion http
     const respuesta = await fetch(`${BASE_URL}?${parametros}`)
 
-    // si respuesta no correcta, lanzar error
+    // lanzar error, si respuesta no correcta
     if (!respuesta.ok) throw new Error(`Error HTTP: ${respuesta.status}`)
 
     // devolver json convertido en objeto js

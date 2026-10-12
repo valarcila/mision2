@@ -4,6 +4,8 @@
   --boton: #415a77;
   --extra: #778da9;
   --texto: #ffffff;
+  --verde: #73a580;
+  --rojo: #f48668;
 }
 
 body {
@@ -39,15 +41,20 @@ h2 {
   display: grid;
   /* dos columnas que ocupan lo mismo */
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  gap: 20px;
 }
 
 .informacion h3 {
   color: var(--extra);
 }
 
+.informacion .contenedor p {
+  font-weight: bold;
+}
+
 .contenedor {
   background-color: var(--contenedor);
+  text-align: center;
   margin: 10px 0;
   padding: 20px;
   border-radius: 5px;
@@ -66,8 +73,35 @@ button:hover {
   background-color: var(--extra);
 }
 
+button.activo {
+  background-color: var(--extra);
+}
+
 .filtros {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 20px;
+}
+
+#logica {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.asteroide {
+  background-color: var(--contenedor);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.asteroide .peligroso {
+  color: var(--rojo);
+  font-weight: bold;
+}
+
+.asteroide .seguro {
+  color: var(--verde);
+  font-weight: bold;
 }
