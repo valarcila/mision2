@@ -2,35 +2,38 @@
 <html lang = "es">
   <head>
     <meta charset = "utf-8" />
-    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0" />
+    <meta name = "viewport" content = "width=device-width, initial-scale=1.0" />
     <title>Misión 2</title>
   </head>
   <body>
     <header>
       <h1>Near Earth Object Web Service</h1>
-      <p>Valeria</p>
+      <p><b>Asteroids NeoWs (NASA)</b></p>
+      <p>val</p>
     </header>
     <main>
       <section>
-        <h2>Observación semanal</h2>
+        <h2>Información semanal</h2>
         <p id = "estado"></p>
-        <div class = "panel">
-          <h3>Asteroides detectados</h3>
-          <p id = "cantidad"></p>
-        </div>
-        <div class = "panel">
-          <h3>Distancia mínima</h3>
-          <p id = "distancia"></p>
+        <div class = "informacion">
+          <div class = "contenedor">
+            <h3>Asteroides detectados</h3>
+            <p id = "numero">---</p>
+          </div>
+          <div class = "contenedor">
+            <h3>Distancia mínima</h3>
+            <p id = "distancia">---</p>
+          </div>
         </div>
       </section>
       <section>
         <h2>Explorar asteroides</h2>
-        <div>
-          <button id = "todos">Todos</button>
-          <button id = "peligrosos">Peligrosos</button>
-          <button id = "rapidos">Rápidos</button>
+        <div class = "filtros">
+          <button id = "todos" type = "button">Todos</button>
+          <button id = "peligrosos" type = "button">Peligrosos</button>
+          <button id = "rapidos" type = "button">Rápidos</button>
         </div>
-        <div id = "resultado"></div>
+        <div id = "logica" class = "contenedor"></div>
       </section>
     </main>
     <script type = "module" src = "/src/main.js"></script>

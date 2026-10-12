@@ -1,8 +1,8 @@
 :root {
   --fondo: #0d1b2a;
-  --panel: #1b263b;
+  --contenedor: #1b263b;
   --boton: #415a77;
-  --destacado: #778da9;
+  --extra: #778da9;
   --texto: #ffffff;
 }
 
@@ -19,56 +19,55 @@ header {
   border-bottom: 1px solid var(--boton);
 }
 
-header h1 {
-  color: var(--texto);
-  margin: 0;
-}
-
 header p {
-  margin-bottom: 5px;
-  color: var(--destacado)
+  color: var(--extra);
 }
 
 main {
   margin: 20px;
-  padding: 20px;
 }
 
 section {
-  margin-bottom: 40px;
+  margin: 40px 0;
 }
 
-#estado {
-  color: var(--destacado);
+h2 {
+  margin-bottom: 20px;
 }
 
-#estado:empty {
-  display: none;
+.informacion {
+  display: grid;
+  /* dos columnas que ocupan lo mismo */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
 }
 
-.panel {
-  background-color: var(--panel);
-  display: inline-block;
-  vertical-align: top;
-  margin: 20px;
+.informacion h3 {
+  color: var(--extra);
+}
+
+.contenedor {
+  background-color: var(--contenedor);
+  margin: 10px 0;
   padding: 20px;
-  border-radius: 10px;
-}
-
-.panel h3 {
-  color: var(--destacado)
-}
-
-.panel p {
-  color: var(--texto)
+  border-radius: 5px;
 }
 
 button {
-  background-color: var(--panel);
+  background-color: var(--boton);
   color: var(--texto);
-  border: 1px solid var(--boton);
-  border-radius: 10px;
-  padding: 10px 20 px;
-  margin: 10px;
+  border: 0;
+  border-radius: 5px;
+  padding: 10px 20px;
   cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--extra);
+}
+
+.filtros {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 }
