@@ -22,15 +22,6 @@ export function transformarAsteroides(asteroides) {
     }))
 }
 
-export function filtrarPeligrosos(asteroides) {
-    return asteroides.filter(asteroide => asteroide.peligroso)
-}
-
-// filtrar asteroides con velocidad superior al umbral 
-export function filtrarRapidos(asteroides) {
-    return asteroides.filter(asteroide => asteroide.velocidad > umbral)
-}
-
 // calcular distancia minima a tierra
 export function calcularDistanciaMinima(asteroides) {
     // descartar NaN
@@ -40,4 +31,14 @@ export function calcularDistanciaMinima(asteroides) {
 
     // comparar distancias y conservar menor
     return validos.reduce((minimo, asteroide) => Math.min(minimo, asteroide.distancia), Infinity)
+}
+
+
+export function filtrarPeligrosos(asteroides) {
+    return asteroides.filter(asteroide => asteroide.peligroso)
+}
+
+// filtrar asteroides con velocidad superior al umbral 
+export function filtrarRapidos(asteroides) {
+    return asteroides.filter(asteroide => asteroide.velocidad > umbral)
 }

@@ -7,6 +7,11 @@ import {
     filtrarRapidos,
     calcularDistanciaMinima
 } from './logic.js'
+import {
+    mostrarEstado,
+    mostrarInformacion,
+    mostrarAsteroides
+} from './render.js'
 
 // obtener fecha actual
 const fechaFin = new Date()
@@ -19,28 +24,39 @@ const fin = fechaFin.toISOString().split("T")[0]
 const inicio = fechaInicio.toISOString().split("T")[0]
 
 async function main() {
+    mostrarEstado("Cargando...")
+
     try {
         // obtener datos nasa
         const asteroides = await obtenerAsteroides(inicio, fin)
 
         // json por consola
-        console.log(asteroides)
+        // console.log(asteroides)
 
         const aplanado = aplanarAsteroides(asteroides)
+
         const transformado = transformarAsteroides(aplanado)
-        console.log(transformado)
+        const distanciaMinima = calcularDistanciaMinima(transformado)
+
+        mostrarInformacion(transformado, distanciaMinima)
+
+        mostrarEstado("Cargado correctamente")
+
+        // console.log(transformado)
 
         // filtrar
         const peligrosos = filtrarPeligrosos(transformado)
         const rapidos = filtrarRapidos(transformado)
 
-        const distanciaMinima = calcularDistanciaMinima(transformado)
+        mostrarAsteroides(transformado)
 
-        console.log("peligrosos: ", peligrosos)
-        console.log("rapidos: ", rapidos)
-        console.log("distancia minima: ", distanciaMinima)
+
+        // console.log("peligrosos: ", peligrosos)
+        // console.log("rapidos: ", rapidos)
+        // console.log("distancia minima: ", distanciaMinima)
     } catch (error) {
-        console.error(error.message)
+        // console.error(error.message)
+        mostrarEstado(error.message)
     }
 }
 
