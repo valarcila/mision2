@@ -1,6 +1,7 @@
 import './style.css'
 import { obtenerAsteroides } from './api.js'
 import { 
+    obtenerFechas,
     aplanarAsteroides, 
     transformarAsteroides,
     filtrarPeligrosos,
@@ -10,27 +11,20 @@ import {
 import {
     mostrarEstado,
     mostrarInformacion,
-    mostrarAsteroides
+    mostrarAsteroides,
+    configurarFiltros
 } from './render.js'
-
-// obtener fecha actual
-const FECHA_FIN = new Date()
-const FECHA_INICIO = new Date(FECHA_FIN)
-
-// intervalo de una semana
-FECHA_INICIO.setDate(FECHA_FIN.getDate() - 6)
-
-// formatear yyyy-mm-dd
-const FIN = FECHA_FIN.toISOString().split("T")[0]
-const INICIO = FECHA_INICIO.toISOString().split("T")[0]
 
 // coordinar aplicacion
 async function main() {
     mostrarEstado("Cargando...")
 
+    // desestructurar objeto
+    const { inicio, fin } = obtenerFechas()
+
     try {
         // obtener datos nasa
-        const asteroides = await obtenerAsteroides(INICIO, FIN)
+        const asteroides = await obtenerAsteroides(inicio, fin)
 
         // transformar datos
         const aplanado = aplanarAsteroides(asteroides)
@@ -50,7 +44,7 @@ async function main() {
         }
 
         // mostrar inicialmente todos
-        // mostrarAsteroides(transformado)
+        mostrarAsteroides(transformado)
 
         configurarFiltros(filtros)
 
@@ -59,24 +53,6 @@ async function main() {
         // console.error(error.message)
         mostrarEstado(`Error: ${error.message}`)
     }
-}
-
-function configurarFiltros(filtros) {
-    const botones = document.querySelectorAll(".filtros button")
-
-    document.querySelector(".filtros").addEventListener("click", event => {
-        const boton = event.target.id
-
-        if (filtros[boton]) {
-            // mostrar asteroides del filtro seleccionado
-            mostrarAsteroides(filtros[boton])
-
-            // activar boton seleccionado y desactivar los demas
-            botones.forEach(b => {
-                b.classList.toggle("activo", b.id === boton)
-            })
-        }    
-    })    
 }
 
 main()

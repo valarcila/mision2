@@ -1,6 +1,21 @@
 // velocidad minima para considerar rápido un asteroide, km/h 
 const umbral = 70000
 
+// obtener intervalo de fechas
+export function obtenerFechas() {
+    // obtener fecha actual
+    const fechaFin = new Date()
+    const fechaInicio = new Date(fechaFin)
+
+    fechaInicio.setDate(fechaFin.getDate() - 6)
+
+    // formatear yyyy-mm-dd
+    const fin = fechaFin.toISOString().split("T")[0]
+    const inicio = fechaInicio.toISOString().split("T")[0]
+
+    return {inicio, fin}
+}
+
 // aplanar arrays por fecha
 export function aplanarAsteroides(asteroides) {
     // Object.values(), obtener arrays fecha

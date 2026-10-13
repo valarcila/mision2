@@ -69,3 +69,21 @@ function crearAsteroide(asteroide) {
 
     return item
 }
+
+export function configurarFiltros(filtros) {
+    const botones = document.querySelectorAll(".filtros button")
+
+    document.querySelector(".filtros").addEventListener("click", event => {
+        const boton = event.target.id
+
+        if (filtros[boton]) {
+            // mostrar asteroides del filtro seleccionado
+            mostrarAsteroides(filtros[boton])
+
+            // activar boton seleccionado y desactivar los demas
+            botones.forEach(b => {
+                b.classList.toggle("activo", b.id === boton)
+            })
+        }    
+    })    
+}

@@ -75,6 +75,7 @@ button:hover {
 
 button.activo {
   background-color: var(--extra);
+  font-weight: bold;
 }
 
 .filtros {
