@@ -9,11 +9,20 @@ export function obtenerFechas() {
 
     fechaInicio.setDate(fechaFin.getDate() - 6)
 
-    // formatear yyyy-mm-dd
-    const fin = fechaFin.toISOString().split("T")[0]
-    const inicio = fechaInicio.toISOString().split("T")[0]
+    const fin = formatear(fechaFin)
+    const inicio = formatear(fechaInicio)
 
     return {inicio, fin}
+}
+
+// formatear fechas aaaa-mm-dd
+function formatear(fecha){
+    const ano = fecha.getFullYear()
+    // padStart(2, "0"), agregar cero si tiene una sola cifra
+    const mes = String(fecha.getMonth() + 1).padStart(2, "0")
+    const dia = String(fecha.getDate()).padStart(2, "0")
+
+    return `${ano}-${mes}-${dia}`
 }
 
 // aplanar arrays por fecha

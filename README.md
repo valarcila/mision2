@@ -9,3 +9,5 @@
 fecha hoy
 
 usar flat no flatMap
+
+uso formatear en lugar de toISOString 
