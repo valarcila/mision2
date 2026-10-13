@@ -18,7 +18,7 @@ export async function obtenerAsteroides(inicio, fin) {
     try {
         respuesta = await fetch(`${BASE_URL}?${parametros}`)
     } catch (error) {
-        throw new Error("No se ha podido conectar con NASA")
+        throw new Error("No se ha podido conectar con la NASA")
     }
 
     // limite de peticiones
