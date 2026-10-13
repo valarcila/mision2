@@ -1,5 +1,7 @@
 import './style.css'
+
 import { obtenerAsteroides } from './api.js'
+
 import { 
     obtenerFechas,
     aplanarAsteroides, 
@@ -8,6 +10,7 @@ import {
     filtrarRapidos,
     calcularDistanciaMinima
 } from './logic.js'
+
 import {
     mostrarEstado,
     mostrarInformacion,
@@ -15,9 +18,12 @@ import {
     configurarFiltros
 } from './render.js'
 
+const CARGANDO_MENSAJE = "Cargando..." 
+const CARGADO_MENSAJE = "Cargado correctamente" 
+
 // coordinar aplicacion
 async function main() {
-    mostrarEstado("Cargando...")
+    mostrarEstado(CARGANDO_MENSAJE, true)
 
     // desestructurar objeto
     const { inicio, fin } = obtenerFechas()
@@ -48,7 +54,7 @@ async function main() {
 
         configurarFiltros(filtros)
 
-        mostrarEstado("Cargado correctamente")
+        mostrarEstado(CARGADO_MENSAJE)
     } catch (error) {
         // console.error(error.message)
         mostrarEstado(`Error: ${error.message}`)

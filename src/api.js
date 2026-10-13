@@ -5,17 +5,26 @@ const API_KEY = import.meta.env.VITE_NASA_API_KEY || "DEMO_KEY"
 
 // funcion asincrona, obtener asteroides entre dos fechas
 export async function obtenerAsteroides(inicio, fin) {
+    let respuesta 
+
     // URLSearchParams, construir parametros
     const parametros = new URLSearchParams({
         start_date: inicio,
         end_date: fin,
         api_key: API_KEY
     })
-    
-    // realizar peticion http
-    const respuesta = await fetch(`${BASE_URL}?${parametros}`)
 
-    // lanzar error, si respuesta no correcta
+    // intentar conectar con la api
+    try {
+        respuesta = await fetch(`${BASE_URL}?${parametros}`)
+    } catch (error) {
+        throw new Error("No se ha podido conectar con NASA")
+    }
+
+    // limite de peticiones
+    if (respuesta.status === 429) throw new Error("Se ha superado el límite de peticiones")
+
+    // otros errores http
     if (!respuesta.ok) throw new Error(`Error HTTP: ${respuesta.status}`)
 
     // devolver json convertido en objeto js

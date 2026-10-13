@@ -2,9 +2,12 @@
 const DIAMETRO_DECIMALES = 3
 
 // mostrar estado
-export function mostrarEstado(mensaje) {
+export function mostrarEstado(mensaje, cargando = false) {
     const estado = document.querySelector("#estado")
     estado.textContent = mensaje
+
+    // activar animacion si esta cargando
+    estado.classList.toggle("cargando", cargando)
 }
 
 // mostrar informacion semanal
