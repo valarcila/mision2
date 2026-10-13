@@ -1,5 +1,5 @@
 // velocidad minima para considerar rápido un asteroide, km/h 
-const umbral = 70000
+const UMBRAL_VELOCIDAD = 70000
 
 // obtener intervalo de fechas
 export function obtenerFechas() {
@@ -46,7 +46,8 @@ export function calcularDistanciaMinima(asteroides) {
     if (validos.length === 0) return null
 
     // comparar distancias y conservar menor
-    return validos.reduce((minimo, asteroide) => Math.min(minimo, asteroide.distancia), Infinity)
+    // return Math.min(...validos.map(asteroide => asteroide.distancia))
+    return validos.reduce((minimo, asteroide) => Math.min(minimo, asteroide.distancia), Infinity)   
 }
 
 // filtrar asteroides peligrosos
@@ -54,7 +55,7 @@ export function filtrarPeligrosos(asteroides) {
     return asteroides.filter(asteroide => asteroide.peligroso)
 }
 
-// filtrar asteroides con velocidad superior al umbral 
+// filtrar asteroides con velocidad superior al umbral de velocidad
 export function filtrarRapidos(asteroides) {
-    return asteroides.filter(asteroide => asteroide.velocidad > umbral)
+    return asteroides.filter(asteroide => asteroide.velocidad > UMBRAL_VELOCIDAD)
 }
