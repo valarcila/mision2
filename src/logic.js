@@ -47,6 +47,11 @@ export function transformarAsteroides(asteroides) {
     }))
 }
 
+// ordenar por distancia a tierra
+export function ordenarAsteroides(asteroides) {
+    return [...asteroides].sort((a, b) => a.distancia - b.distancia)
+}
+
 // calcular distancia minima a tierra
 export function calcularDistanciaMinima(asteroides) {
     // descartar NaN

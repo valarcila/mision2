@@ -4,6 +4,7 @@ import {
 } from './cache.js' 
 
 const BASE_URL = "https://api.nasa.gov/neo/rest/v1/feed"
+const TIEMPO_ESPERA = 10000
 
 // obtener key desde .env.local o usar DEMO_KEY
 const API_KEY = import.meta.env.VITE_NASA_API_KEY || "DEMO_KEY"
@@ -28,8 +29,12 @@ export async function obtenerAsteroides(inicio, fin) {
 
     // intentar conectar con la api
     try {
-        respuesta = await fetch(`${BASE_URL}?${parametros}`)
+        respuesta = await fetch(`${BASE_URL}?${parametros}`, {
+            signal: AbortSignal.timeout(TIEMPO_ESPERA)
+        })
     } catch (error) {
+        if (error.name === "TimeoutError") throw new Error("La NASA ha tardado demasiado en responder") 
+      
         throw new Error("No se ha podido conectar con la NASA")
     }
 

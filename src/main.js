@@ -6,6 +6,7 @@ import {
     obtenerFechas,
     aplanarAsteroides, 
     transformarAsteroides,
+    ordenarAsteroides,
     filtrarPeligrosos,
     filtrarRapidos,
     calcularDistanciaMinima
@@ -39,21 +40,23 @@ async function main() {
         const aplanado = aplanarAsteroides(asteroides)
         const transformado = transformarAsteroides(aplanado)
 
+        const ordenado = ordenarAsteroides(transformado) 
+
         // calcular distancia minima
-        const distanciaMinima = calcularDistanciaMinima(transformado)
+        const distanciaMinima = calcularDistanciaMinima(ordenado)
 
         // mostrar informacion semanal
-        mostrarInformacion(transformado, distanciaMinima)
+        mostrarInformacion(ordenado, distanciaMinima)
 
         // filtrar asteroides        
         const filtros = {
-            todos: transformado,
-            peligrosos: filtrarPeligrosos(transformado),
-            rapidos: filtrarRapidos(transformado)
+            todos: ordenado,
+            peligrosos: filtrarPeligrosos(ordenado),
+            rapidos: filtrarRapidos(ordenado)
         }
 
         // mostrar inicialmente todos
-        mostrarAsteroides(transformado)
+        mostrarAsteroides(ordenado)
 
         configurarFiltros(filtros)
 
