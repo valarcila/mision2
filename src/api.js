@@ -1,3 +1,8 @@
+import {
+    guardarCache,
+    consultarCache
+} from './cache.js' 
+
 const BASE_URL = "https://api.nasa.gov/neo/rest/v1/feed"
 
 // obtener key desde .env.local o usar DEMO_KEY
@@ -5,7 +10,14 @@ const API_KEY = import.meta.env.VITE_NASA_API_KEY || "DEMO_KEY"
 
 // funcion asincrona, obtener asteroides entre dos fechas
 export async function obtenerAsteroides(inicio, fin) {
+    // crear key segun fechas
+    const key = `asteroides-${inicio}-${fin}`
     let respuesta 
+
+    // consultar cache
+    const consulta = consultarCache(key)
+    
+    if (consulta !== null) return consulta
 
     // URLSearchParams, construir parametros
     const parametros = new URLSearchParams({
@@ -27,10 +39,17 @@ export async function obtenerAsteroides(inicio, fin) {
     // otros errores http
     if (!respuesta.ok) throw new Error(`Error HTTP: ${respuesta.status}`)
 
+    let value 
+
     // intentar devolver json convertido en objeto js
     try {
-        return await respuesta.json()
+        value = await respuesta.json()
     } catch (error) {
         throw new Error("No se han podido parsear los datos de la NASA")
     }
+
+    // guardar cache   
+    guardarCache(key, value)
+
+    return value
 }
