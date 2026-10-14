@@ -27,6 +27,10 @@ export async function obtenerAsteroides(inicio, fin) {
     // otros errores http
     if (!respuesta.ok) throw new Error(`Error HTTP: ${respuesta.status}`)
 
-    // devolver json convertido en objeto js
-    return await respuesta.json()
+    // intentar devolver json convertido en objeto js
+    try {
+        return await respuesta.json()
+    } catch (error) {
+        throw new Error("No se han podido parsear los datos de la NASA")
+    }
 }

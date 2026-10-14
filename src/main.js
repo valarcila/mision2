@@ -15,7 +15,9 @@ import {
     mostrarEstado,
     mostrarInformacion,
     mostrarAsteroides,
-    configurarFiltros
+    configurarFiltros,
+    ocultarReintentar,
+    reintentarMain
 } from './render.js'
 
 const CARGANDO_MENSAJE = "Cargando..." 
@@ -23,6 +25,7 @@ const CARGADO_MENSAJE = "Cargado correctamente"
 
 // coordinar aplicacion
 async function main() {
+    ocultarReintentar(true)
     mostrarEstado(CARGANDO_MENSAJE, true)
 
     // desestructurar objeto
@@ -56,9 +59,12 @@ async function main() {
 
         mostrarEstado(CARGADO_MENSAJE)
     } catch (error) {
-        // console.error(error.message)
-        mostrarEstado(`Error: ${error.message}`)
+        ocultarReintentar(false)
+        mostrarEstado(error.message)
     }
 }
+
+// activar reiniciar una sola vez
+reintentarMain(main)
 
 main()

@@ -1,6 +1,16 @@
 // numero de decimales diametro 
 const DIAMETRO_DECIMALES = 3
 
+const reintentar = document.querySelector("#reintentar")
+
+export function ocultarReintentar(oculto = true) {
+    reintentar.classList.toggle("oculto", oculto)
+}
+
+export function reintentarMain(event) {
+    reintentar.addEventListener("click", event)
+} 
+
 // mostrar estado
 export function mostrarEstado(mensaje, cargando = false) {
     const estado = document.querySelector("#estado")
@@ -19,11 +29,11 @@ export function mostrarInformacion(asteroides, distanciaMinima) {
     numero.textContent = asteroides.length
 
     // distancia minima
-    distancia.textContent = formatear(distanciaMinima, "km")
+    distancia.textContent = formatearNumero(distanciaMinima, "km")
 }
 
 // formatear valores y unidades
-function formatear(valor, unidad, decimales = 0) {
+function formatearNumero(valor, unidad, decimales = 0) {
     return Number.isFinite(valor)
         ? `${valor.toFixed(decimales)} ${unidad}`
         : "Sin datos" 
@@ -43,7 +53,7 @@ export function mostrarAsteroides(asteroides) {
 
     const items = asteroides.map(asteroide => crearAsteroide(asteroide))
 
-    // añadir al contenedor
+    // añadir a items
     logica.append(...items)
 }
 
@@ -58,9 +68,9 @@ function crearAsteroide(asteroide) {
     const peligroso = document.createElement("p")
 
     nombre.textContent = asteroide.nombre
-    distancia.textContent = `Distancia: ${formatear(asteroide.distancia, "km")}`
-    velocidad.textContent = `Velocidad: ${formatear(asteroide.velocidad, "km/h")}`
-    diametro.textContent = `Diámetro: ${formatear(asteroide.diametro, "km", DIAMETRO_DECIMALES)}`
+    distancia.textContent = `Distancia: ${formatearNumero(asteroide.distancia, "km")}`
+    velocidad.textContent = `Velocidad: ${formatearNumero(asteroide.velocidad, "km/h")}`
+    diametro.textContent = `Diámetro: ${formatearNumero(asteroide.diametro, "km", DIAMETRO_DECIMALES)}`
     peligroso.textContent = asteroide.peligroso
         ? "Potencialmente peligroso"
         : "No peligroso"

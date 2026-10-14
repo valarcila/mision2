@@ -9,14 +9,14 @@ export function obtenerFechas() {
 
     fechaInicio.setDate(fechaFin.getDate() - 6)
 
-    const fin = formatear(fechaFin)
-    const inicio = formatear(fechaInicio)
+    const fin = formatearFecha(fechaFin)
+    const inicio = formatearFecha(fechaInicio)
 
     return {inicio, fin}
 }
 
 // formatear fechas aaaa-mm-dd
-function formatear(fecha){
+function formatearFecha(fecha){
     const ano = fecha.getFullYear()
     // padStart(2, "0"), agregar cero si tiene una sola cifra
     const mes = String(fecha.getMonth() + 1).padStart(2, "0")

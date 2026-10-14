@@ -37,6 +37,33 @@ h2 {
   margin-bottom: 20px;
 }
 
+#estado {
+  text-align: center;
+}
+
+/*animacion estado*/
+@keyframes cargando {
+  0% {
+    opacity: 1;
+  }  
+
+  50% {
+    opacity: 0.5;
+  }  
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.cargando {
+  animation: cargando 2s infinite;
+}
+
+.oculto {
+  display: none;
+}
+
 .informacion {
   display: grid;
   /* dos columnas que ocupan lo mismo */
@@ -105,23 +132,4 @@ button.activo {
 .asteroide .seguro {
   color: var(--verde);
   font-weight: bold;
-}
-
-/*animacion estado*/
-@keyframes cargando {
-  0% {
-    opacity: 1;
-  }  
-
-  50% {
-    opacity: 0.5;
-  }  
-
-  100% {
-    opacity: 1;
-  }
-}
-
-.cargando {
-  animation: cargando 2s infinite;
 }
