@@ -13,7 +13,7 @@ body {
   background-color: var(--fondo);
   color: var(--texto);
   margin: 0;
-  line-height: 1;
+  line-height: 1.5;
 }
 
 header {
