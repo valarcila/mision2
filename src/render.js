@@ -2,6 +2,8 @@
 const DIAMETRO_DECIMALES = 3
 
 const reintentar = document.querySelector("#reintentar")
+let filtros
+const botones = document.querySelectorAll(".filtros button")
 
 export function ocultarReintentar(oculto = true) {
     reintentar.classList.toggle("oculto", oculto)
@@ -83,20 +85,22 @@ function crearAsteroide(asteroide) {
     return item
 }
 
-export function configurarFiltros(filtros) {
-    const botones = document.querySelectorAll(".filtros button")
-
-    document.querySelector(".filtros").addEventListener("click", event => {
-        const boton = event.target.id
-
-        if (filtros[boton]) {
-            // mostrar asteroides del filtro seleccionado
-            mostrarAsteroides(filtros[boton])
-
-            // activar boton seleccionado y desactivar los demas
-            botones.forEach(b => {
-                b.classList.toggle("activo", b.id === boton)
-            })
-        }    
-    })    
+// actualizar diccionario filters
+export function configurarFiltros(filters) {
+    filtros = filters
 }
+
+// registrar event una sola vez
+document.querySelector(".filtros").addEventListener("click", event => {
+    const boton = event.target.id
+
+    if (filtros?.[boton]) {
+        // mostrar asteroides del filtro seleccionado
+        mostrarAsteroides(filtros[boton])
+
+        // activar boton seleccionado y desactivar los demas
+        botones.forEach(b => {
+            b.classList.toggle("activo", b.id === boton)
+        })
+    }    
+})    
