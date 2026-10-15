@@ -32,13 +32,14 @@ export function mostrarInformacion(asteroides, distanciaMinima) {
     numero.textContent = asteroides.length
 
     // distancia minima
-    distancia.textContent = formatearNumero(distanciaMinima, "km")
+    distancia.textContent = formatearNumero(distanciaMinima)
 }
 
 // formatear valores y unidades
-function formatearNumero(valor, unidad, decimales = 0) {
+function formatearNumero(valor, unidad = "", decimales = 0) {
     return Number.isFinite(valor)
-        ? `${valor.toFixed(decimales)} ${unidad}`
+        // conservar o no espacio
+        ? `${valor.toFixed(decimales)}${unidad ? ` ${unidad}` : ""}`
         : "Sin datos" 
 }
 
