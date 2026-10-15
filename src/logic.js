@@ -60,7 +60,6 @@ export function calcularDistanciaMinima(asteroides) {
     if (validos.length === 0) return null
 
     // comparar distancias y conservar menor
-    // return Math.min(...validos.map(asteroide => asteroide.distancia))
     return validos.reduce((minimo, asteroide) => Math.min(minimo, asteroide.distancia), Infinity)   
 }
 

@@ -17,7 +17,7 @@ import {
     mostrarInformacion,
     mostrarAsteroides,
     limpiarAsteroides,
-    configurarFiltros,
+    actualizarFiltros,
     ocultarReintentar,
     reintentarMain
 } from './render.js'
@@ -39,8 +39,7 @@ async function main() {
 
     limpiarAsteroides()
 
-    // desactivar filtros anteriores 
-    configurarFiltros(null)
+    actualizarFiltros(null)
 
     // desestructurar objeto
     const { inicio, fin } = obtenerFechas()
@@ -71,7 +70,7 @@ async function main() {
         // mostrar inicialmente todos
         mostrarAsteroides(ordenado)
 
-        configurarFiltros(filtros)
+        actualizarFiltros(filtros)
 
         mostrarEstado(CARGADO_MENSAJE)
     } catch (error) {

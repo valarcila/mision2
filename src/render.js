@@ -89,7 +89,7 @@ function crearAsteroide(asteroide) {
 }
 
 // actualizar diccionario filters
-export function configurarFiltros(filters) {
+export function actualizarFiltros(filters) {
     filtros = filters
 }
 
