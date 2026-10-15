@@ -2,6 +2,7 @@
 const DIAMETRO_DECIMALES = 3
 
 const reintentar = document.querySelector("#reintentar")
+const logica = document.querySelector("#logica")
 let filtros
 const botones = document.querySelectorAll(".filtros button")
 
@@ -43,10 +44,7 @@ function formatearNumero(valor, unidad, decimales = 0) {
 
 // mostar asteroides
 export function mostrarAsteroides(asteroides) {
-    const logica = document.querySelector("#logica")
-
-    // limpiar logica
-    logica.textContent = ""
+    limpiarAsteroides()
 
     if (asteroides.length === 0) {
         logica.textContent = "Sin datos"
@@ -58,6 +56,11 @@ export function mostrarAsteroides(asteroides) {
     // añadir a items
     logica.append(...items)
 }
+
+export function limpiarAsteroides() {
+    // limpiar logica
+    logica.textContent = ""
+} 
 
 // crear asteroide html
 function crearAsteroide(asteroide) {

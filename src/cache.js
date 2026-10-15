@@ -1,6 +1,11 @@
 export function guardarCache(key, value) {
-    // convertir objeto js en string json
-    localStorage.setItem(key, JSON.stringify(value))
+    try {
+        // convertir objeto js en string json
+        localStorage.setItem(key, JSON.stringify(value))
+    } catch (error) {
+        // avisar por la consola
+        console.warn(`No se han podido guardar los datos en caché: ${error}`)
+    }
 }
 
 export function consultarCache(key) {

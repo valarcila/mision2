@@ -16,6 +16,7 @@ import {
     mostrarEstado,
     mostrarInformacion,
     mostrarAsteroides,
+    limpiarAsteroides,
     configurarFiltros,
     ocultarReintentar,
     reintentarMain
@@ -23,11 +24,23 @@ import {
 
 const CARGANDO_MENSAJE = "Cargando..." 
 const CARGADO_MENSAJE = "Cargado correctamente" 
+let cargando = false
 
 // coordinar aplicacion
 async function main() {
+    // evitar cargas simultaneas
+    if (cargando) return
+
+    cargando = true
+
+    mostrarEstado(CARGANDO_MENSAJE, cargando)
+
     ocultarReintentar(true)
-    mostrarEstado(CARGANDO_MENSAJE, true)
+
+    limpiarAsteroides()
+
+    // desactivar filtros anteriores 
+    configurarFiltros(null)
 
     // desestructurar objeto
     const { inicio, fin } = obtenerFechas()
@@ -64,6 +77,8 @@ async function main() {
     } catch (error) {
         ocultarReintentar(false)
         mostrarEstado(error.message)
+    } finally {
+        cargando = false 
     }
 }
 

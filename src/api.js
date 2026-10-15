@@ -52,7 +52,7 @@ export async function obtenerAsteroides(inicio, fin) {
     } catch (error) {
         throw new Error("No se han podido parsear los datos de la NASA")
     }
-
+    
     // guardar cache   
     guardarCache(key, value)
 
